@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async JS</title>
+    <style>
+        button{
+            background-color: powderblue;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(131, 222, 235);
+            
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: plum;margin:auto;padding:10px 20px;border:6px solid powderblue;height:300px;width:max-content;margin-top:100px;border-radius:50px">
+    <h1>It's time to chose your favorite color</h1>
+    <h3>Chose Start to get variety of colors.</h3>
+    <h3>Chose Stop to stuck on the color you like:)</h3>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</div>
+</body>
+<script>
+
+    const randomColor = function () {
+        const hex = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += hex[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+      
+      let intervalId;
+      const startChangingColor = function () {
+        if (!intervalId) {
+          intervalId = setInterval(changeBgColor, 1000);
+        }
+      
+        function changeBgColor() {
+          document.body.style.backgroundColor = randomColor();
+        }
+      };
+      const stopChangingColor = function () {
+        clearInterval(intervalId);
+        intervalId = null;
+      };
+      
+      document.querySelector('#start').addEventListener('click', startChangingColor);
+      
+      document.querySelector('#stop').addEventListener('click', stopChangingColor);
+      
+</script>
+</html>
